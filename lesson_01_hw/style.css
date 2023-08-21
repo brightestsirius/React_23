@@ -1,0 +1,23 @@
+table{
+    border-collapse: collapse;
+    width: 300px;
+}
+
+th, td{
+    border: 1px solid black;
+    padding: 7px;
+}
+
+.row__brand{
+    background: #3F51B5;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+}
+
+.cell__model{
+    background: #E91E63;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+}
