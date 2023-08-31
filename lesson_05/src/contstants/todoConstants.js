@@ -1,0 +1,17 @@
+const TODO_ITEM_COMPLETED = `completed`;
+const TODO_ITEM_PROGRESS = `progress`;
+
+const TODO_FILTER_ALL = `all`;
+const TODO_FILTER_COMPLETED = `completed`;
+const TODO_FILTER_PROGRESS = `progress`;
+
+const TODO_COLOR = `black`;
+
+export {
+  TODO_ITEM_COMPLETED,
+  TODO_ITEM_PROGRESS,
+  TODO_FILTER_ALL,
+  TODO_FILTER_COMPLETED,
+  TODO_FILTER_PROGRESS,
+  TODO_COLOR
+};
