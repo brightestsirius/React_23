@@ -1,6 +1,7 @@
-import React from "react";
-import DeleteIcon from "@mui/icons-material/Delete";
+import React from 'react'
 
-export default function Button({ actionClick }) {
-  return <DeleteIcon onClick={actionClick} />;
+export default function Button({title, actionOnClick}) {
+  return (
+    <button onClick={actionOnClick}>{title}</button>
+  )
 }

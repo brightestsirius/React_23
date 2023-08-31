@@ -1,34 +1,30 @@
 import React from "react";
+import "./style.sass";
 
-import ListItem from "@mui/material/ListItem";
-import ListItemText from "@mui/material/ListItemText";
-import IconButton from "@mui/material/IconButton";
+import { ITEM_COMPLETED, ITEM_PROGRESS } from "../../constants/todoConstants";
 
-import {
-  TODO_ITEM_COMPLETED,
-  TODO_ITEM_PROGRESS,
-} from "../../contstants/todoConstants";
-
-import Button from "../Button/Button";
+import Button from "./../Button/Button";
 
 export default function TodoListItem({
   item,
   handleItemCompleted,
-  hadleItemDelete,
+  handleItemDelete,
 }) {
-  const todoItemClasses = (item) => {
+  const itemClass = (item) => {
     const classes = [];
 
-    classes.push(item.completed ? TODO_ITEM_COMPLETED : TODO_ITEM_PROGRESS);
+    classes.push(item.completed ? ITEM_COMPLETED : ITEM_PROGRESS);
 
     return classes.join(` `);
   };
+
   return (
-    <ListItem className={todoItemClasses(item)} onClick={() => handleItemCompleted(item)}>
-    <ListItemText primary={<><strong>{item.rating}</strong> {item.title}</>} />
-    <IconButton edge="end" aria-label="delete">
-      <Button actionClick={(e) => hadleItemDelete(e, item.id)} />
-    </IconButton>
-  </ListItem>
+    <li className={itemClass(item)} onClick={() => handleItemCompleted(item)}>
+      <strong>{item.rating}</strong> {item.title}{" "}
+      <Button
+        title="Delete"
+        actionOnClick={(e) => handleItemDelete(e, item.id)}
+      />
+    </li>
   );
 }

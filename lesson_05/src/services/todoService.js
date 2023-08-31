@@ -1,27 +1,26 @@
-import axios from "axios";
-const API = `https://61498bf2035b3600175ba32f.mockapi.io/list`;
+const API = `https://61498bf2035b3600175ba32f.mockapi.io/todo`;
 
-const getTodo = () => axios(API).then(({ data }) => data);
+const getTodo = () => fetch(API).then((data) => data.json());
 
 const changeTodoItem = (id, item) =>
-  axios
-    .put(API + `/${id}`, item, {
-      headers: {
-        "Content-type": "application/json",
-      },
-    })
-    .then(({ data }) => data);
+  fetch(API + `/${id}`, {
+    method: `PUT`,
+    headers: {
+      "Content-type": "application/json",
+    },
+    body: JSON.stringify(item),
+  }).then((data) => data.json());
 
-const todoItemDelete = (id) =>
-  axios.delete(API + `/${id}`).then(({ data }) => data);
+const deleteTodoItem = (id) =>
+  fetch(API + `/${id}`, { method: `DELETE` }).then((data) => data.json());
 
-const todoItemAdd = (item) =>
-  axios
-    .post(API, item, {
-      headers: {
-        "Content-type": "application/json",
-      },
-    })
-    .then(({ data }) => data);
+const addTodoItem = (item) =>
+  fetch(API, {
+    method: `POST`,
+    headers: {
+      "Content-type": "application/json",
+    },
+    body: JSON.stringify(item),
+  }).then((data) => data.json());
 
-export { getTodo, changeTodoItem, todoItemDelete, todoItemAdd };
+export { getTodo, changeTodoItem, deleteTodoItem, addTodoItem };
