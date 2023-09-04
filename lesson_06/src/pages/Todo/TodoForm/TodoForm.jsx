@@ -34,6 +34,7 @@ export default function TodoForm({liftingNewTodo}) {
   };
 
   return (
+    
     <form onSubmit={handleSubmit} ref={formNode}>
       <label htmlFor="todoTitle">
         Todo title:{" "}

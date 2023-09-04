@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import "./style.sass";
 
 import {
@@ -7,10 +7,12 @@ import {
   FILTER_TODO_PROGRESS,
 } from "../../../constants/todoConstants";
 
-export default function TodoFilter({liftingFilter}) {
-  const [filter, setFilter] = useState(FILTER_TODO_ALL);
+import useLocalStorage from '../../../hooks/useLocalStorage'
 
-  const handleFilter = e => setFilter(e.target.value);
+export default function TodoFilter({ liftingFilter }) {
+  const [filter, setFilter] = useLocalStorage(`filter`, FILTER_TODO_ALL);
+
+  const handleFilter = (e) => setFilter(e.target.value);
 
   useEffect(() => {
     liftingFilter(filter);

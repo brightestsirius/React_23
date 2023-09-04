@@ -1,4 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
+
+import List from '@mui/material/List';
 
 import {
   getTodo,
@@ -13,9 +15,13 @@ import {
   FILTER_TODO_PROGRESS,
 } from "./../../../constants/todoConstants";
 
-export default function TodoList({ newTodo, filter }) {
+export default function TodoList({ newTodo, filter, color, liftingList }) {
   const [list, setList] = useState([]);
   const [filteredList, setFilteredList] = useState([]);
+
+  const sortedList = useMemo(() => {
+    return filteredList.sort((a, b) => b.rating - a.rating);
+  }, [filteredList]);
 
   useEffect(() => {
     (async () => {
@@ -25,7 +31,8 @@ export default function TodoList({ newTodo, filter }) {
 
   useEffect(() => {
     setFilteredList(list);
-  }, [list])
+    liftingList(list);
+  }, [list]);
 
   useEffect(() => {
     Object.keys(newTodo).length &&
@@ -33,12 +40,12 @@ export default function TodoList({ newTodo, filter }) {
   }, [newTodo]);
 
   useEffect(() => {
-    switch(filter){
+    switch (filter) {
       case FILTER_TODO_COMPLETED:
-        setFilteredList(list.filter(item => item.completed));
+        setFilteredList(list.filter((item) => item.completed));
         break;
       case FILTER_TODO_PROGRESS:
-        setFilteredList(list.filter(item => !item.completed));
+        setFilteredList(list.filter((item) => !item.completed));
         break;
       default:
         setFilteredList(list);
@@ -74,8 +81,8 @@ export default function TodoList({ newTodo, filter }) {
   };
 
   return list.length ? (
-    <ul>
-      {filteredList.map((item, index) => (
+    <List style={{ color }}>
+      {sortedList.map((item, index) => (
         <TodoListItem
           key={index}
           item={item}
@@ -83,6 +90,6 @@ export default function TodoList({ newTodo, filter }) {
           handleItemDelete={handleItemDelete}
         />
       ))}
-    </ul>
+    </List>
   ) : null;
 }

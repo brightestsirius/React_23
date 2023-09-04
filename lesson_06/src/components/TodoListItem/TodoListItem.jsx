@@ -1,9 +1,11 @@
 import React from "react";
+
+import ListItemButton from "@mui/material/ListItemButton";
+import IconButton from "@mui/material/IconButton";
+import DeleteIcon from '@mui/icons-material/Delete';
 import "./style.sass";
 
 import { ITEM_COMPLETED, ITEM_PROGRESS } from "../../constants/todoConstants";
-
-import Button from "./../Button/Button";
 
 export default function TodoListItem({
   item,
@@ -11,7 +13,7 @@ export default function TodoListItem({
   handleItemDelete,
 }) {
   const itemClass = (item) => {
-    const classes = [];
+    const classes = [`list__item`];
 
     classes.push(item.completed ? ITEM_COMPLETED : ITEM_PROGRESS);
 
@@ -19,12 +21,15 @@ export default function TodoListItem({
   };
 
   return (
-    <li className={itemClass(item)} onClick={() => handleItemCompleted(item)}>
+    <ListItemButton
+      onClick={() => handleItemCompleted(item)}
+      sx={{ mb: 1 }}
+      className={itemClass(item)}
+    >
       <strong>{item.rating}</strong> {item.title}{" "}
-      <Button
-        title="Delete"
-        actionOnClick={(e) => handleItemDelete(e, item.id)}
-      />
-    </li>
+      <IconButton edge="end" aria-label="delete" onClick={(e) => handleItemDelete(e, item.id)}>
+        <DeleteIcon />
+      </IconButton>
+    </ListItemButton>
   );
 }
