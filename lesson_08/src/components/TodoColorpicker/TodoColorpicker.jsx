@@ -1,19 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, {useContext} from 'react'
 
-export default function TodoColorpicker({ liftingColor }) {
-  const [color, setColor] = useState(`crimson`);
+import ListColorContext from '../../contexts/ListColorContext'
 
-  useEffect(() => {
-    liftingColor(color);
-  }, [color]);
+export default function TodoColorPicker() {
+
+  const {color, setColor} = useContext(ListColorContext);
 
   return (
-    <div className="wrapper">
-      <input
-        type="color"
-        defaultValue={color}
-        onChange={(e) => setColor(e.target.value)}
-      />
+    <div className='wrapper'>
+      <input type="color" defaultValue={color} onChange={e => setColor(e.target.value)} />
     </div>
-  );
+  )
 }
