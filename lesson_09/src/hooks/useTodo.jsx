@@ -1,6 +1,6 @@
-import React, { useReducer } from "react";
+import { useReducer } from "react";
 
-export default function useTodo() {
+const useTodo = () => {
   const INITIAL_STATE = {
     todo: [
       {
@@ -71,9 +71,9 @@ export default function useTodo() {
   const ACTION_TODO_ITEM_DELETE = `ACTION_TODO_ITEM_DELETE`;
 
   // action
-  const actionTodoItemDelete = (payload) => ({
+  const actionTodoItemDelete = (todoItemId) => ({
     type: ACTION_TODO_ITEM_DELETE,
-    payload,
+    payload: todoItemId,
   });
 
   const reducer = (state = INITIAL_STATE, { type, payload }) => {
@@ -90,7 +90,11 @@ export default function useTodo() {
 
   const [state, dispatch] = useReducer(reducer, INITIAL_STATE);
 
-  const handleItemDelete = (id) => dispatch(actionTodoItemDelete(id));
+  const handleItemDelete = (id) => {
+    dispatch(actionTodoItemDelete(id));
+  };
 
   return { state, handleItemDelete };
-}
+};
+
+export default useTodo;

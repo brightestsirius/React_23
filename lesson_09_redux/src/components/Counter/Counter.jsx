@@ -3,17 +3,20 @@ import "./style.sass";
 
 import { useSelector, useDispatch } from "react-redux";
 
-import { actionCounterDec, actionCounterInc } from "./../../store/counter/actions";
+import { actionCounterDec, actionCounterInc } from "./../../store/actions";
 
 export default function Counter() {
-  const counter = useSelector((state) => state.counter.counter);
+  const counter = useSelector((store) => store.counter);
   const dispatch = useDispatch();
+
+  const handleDec = () => dispatch(actionCounterDec);
+  const handleInc = () => dispatch(actionCounterInc);
 
   return (
     <div className="counter__wrapper">
-      <button onClick={() => dispatch(actionCounterDec)}>-</button>
-      <span>{counter}</span>
-      <button onClick={() => dispatch(actionCounterInc)}>+</button>
+      <button onClick={handleDec}>-</button>
+      <strong>{counter}</strong>
+      <button onClick={handleInc}>+</button>
     </div>
   );
 }

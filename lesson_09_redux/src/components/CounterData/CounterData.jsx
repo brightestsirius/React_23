@@ -1,9 +1,11 @@
-import React from "react";
+import React from 'react'
 
-import { useSelector } from "react-redux";
+import {useSelector} from 'react-redux'
 
 export default function CounterData() {
-  const counter = useSelector((state) => state.counter.counter);
+  const counter = useSelector(store => store.counter)
 
-  return <h3 align="center">CounterData: {counter}</h3>;
+  return (
+    <h3 align="center">CounterData: {counter}</h3>
+  )
 }

@@ -1,6 +1,7 @@
-import React from "react";
+import React from 'react'
+import './style.sass'
 
-import { NavLink } from "react-router-dom";
+import {NavLink} from 'react-router-dom'
 
 export default function Navigation() {
   return (
@@ -14,5 +15,5 @@ export default function Navigation() {
         </li>
       </ul>
     </nav>
-  );
+  )
 }

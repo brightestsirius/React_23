@@ -1,17 +1,18 @@
 import React, { useContext } from "react";
 
-import { Link } from "react-router-dom";
+import TodoContext from "../../contexts/TodoContext";
 
-import todoContext from "../../contexts/todoContext";
+import {Link} from 'react-router-dom'
 
 export default function TodoList() {
-  let { state, handleItemDelete } = useContext(todoContext);
+  const { state, handleItemDelete } = useContext(TodoContext);
 
   return state.todo.length ? (
     <ul>
       {state.todo.map((item, index) => (
         <li key={index}>
-          {item.title} <Link to={String(item.id)}>Read more</Link>
+          {item.title}{" "}
+          <Link to={String(item.id)}>Read more</Link>
           <button onClick={() => handleItemDelete(item.id)}>Delete</button>
         </li>
       ))}

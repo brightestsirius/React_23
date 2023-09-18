@@ -1,15 +1,17 @@
 import React, { useContext } from "react";
 
-import todoContext from "./../../contexts/todoContext";
+import TodoContext from "../../contexts/TodoContext";
 
 export default function TodoStatistics() {
-  const { state:{todo} } = useContext(todoContext);
+  const { state } = useContext(TodoContext);
 
-  return (
+  return state.todo.length ? (
     <ul>
-      <li>All: {todo.length}</li>
-      <li>Completed: {todo.filter((item) => item.completed).length}</li>
-      <li>In progress: {todo.filter((item) => !item.completed).length}</li>
+      <li>All: {state.todo.length}</li>
+      <li>Completed: {state.todo.filter((item) => item.completed).length}</li>
+      <li>
+        In progress: {state.todo.filter((item) => !item.completed).length}
+      </li>
     </ul>
-  );
+  ) : null;
 }

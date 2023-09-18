@@ -2,34 +2,33 @@ import React, { useContext } from "react";
 
 import { useParams, useNavigate } from "react-router-dom";
 
-import todoContext from "../../contexts/todoContext";
+import TodoContext from "./../../contexts/TodoContext";
 
 export default function TodoItem() {
   const navigation = useNavigate();
 
-  const { todoId } = useParams();
+  const { id } = useParams();
   const {
     state: { todo },
-    handleItemDelete,
-  } = useContext(todoContext);
+    handleItemDelete
+  } = useContext(TodoContext);
+  let todoItem = todo.find((item) => item.id === +id);
 
-  const item = todo.find((item) => item.id === +todoId);
-
-  const handleDelete = (id) => {
+  const handleDelete = id => {
     handleItemDelete(id);
     navigation(`/todo`);
-  };
+  }
 
-  return item ? (
-    <>
+  return todoItem ? (
+    <div>
       <ul>
-        {Object.keys(item).map((key, index) => (
+        {Object.keys(todoItem).map((key, index) => (
           <li key={index}>
-            {key}: {String(item[key])}
+            {key}: {String(todoItem[key])}
           </li>
         ))}
       </ul>
-      <button onClick={() => handleDelete(item.id)}>Delete</button>
-    </>
+      <button onClick={() => handleDelete(todoItem.id)}>Delete item</button>
+    </div>
   ) : null;
 }
