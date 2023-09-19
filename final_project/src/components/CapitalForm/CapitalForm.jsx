@@ -7,15 +7,16 @@ export default function CapitalForm() {
   const navigation = useNavigate();
 
   const countries = useSelector((store) => store.countries);
-  const [translations, setTranslations] = useState(countries[0].translations);
+  const [translations, setTranslations] = useState(Object.keys(countries[0].translations));
 
   const [country, setCountry] = useState(countries[0].name.official);
-  const [translation, setTranslation] = useState(Object.keys(countries[0].translations)[0]);
+  const [translation, setTranslation] = useState(translations[0]);
 
   const handleSelectCapital = e => {
     setCountry(e.target.value);
     let countryTranslations = countries.find(country => country.name.official === e.target.value).translations;
-    setTranslations(countryTranslations);
+    setTranslations(Object.keys(countryTranslations));
+    setTranslation(Object.keys(countryTranslations)[0]);
   };
 
   const handleSelectTranslation = e => setTranslation(e.target.value);
@@ -42,7 +43,7 @@ export default function CapitalForm() {
         <label>
           <h4>Select Translation</h4>
           <select defaultValue={translation} onChange={handleSelectTranslation}>
-            {Object.keys(translations).map((key, index) => (
+            {translations.map((key, index) => (
               <option key={index} value={key}>{key}</option>
             ))}
           </select>
