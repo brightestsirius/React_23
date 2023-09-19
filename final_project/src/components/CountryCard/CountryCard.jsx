@@ -2,13 +2,13 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
-import { renderObjectList } from "./../../common/common";
+import { renderObjectList } from "../../common/common";
 
 import { useSearchParams, useNavigate } from "react-router-dom";
 
-import { actionCountryDelete } from "./../../store/actions";
+import { actionCountryDelete } from "../../store/actions";
 
-export default function Country() {
+export default function CountryCard() {
   const dispatch = useDispatch();
   const navigation = useNavigate();
 
