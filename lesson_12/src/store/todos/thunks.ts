@@ -1,9 +1,9 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 
 import { moduleName } from './constants'
-import { idType } from '../../constants/todos'
+import { id } from './../../types/todos'
 
-import todos from '../../services/todos'
+import todos from './../../services/todos'
 
 const thunks = {
     fetchTodos: createAsyncThunk(
@@ -12,11 +12,11 @@ const thunks = {
     ),
     fetchTodosItemDelete: createAsyncThunk(
         `${moduleName}/fetchTodosItemDelete`,
-        async (id: idType) => {
-            await todos.get(id);
+        async (id: id) => {
+            await todos.delete(id);
             return id;
         }
     )
 }
 
-export default thunks
+export default thunks;

@@ -1,9 +1,9 @@
-import React, { ChangeEvent, useEffect } from 'react'
-import { useAppDispatch, useAppSelector } from './../../store/store'
+import React, { useEffect } from 'react'
+import { useAppSelector, useAppDispatch } from './../../store/store'
+
+import { TodosItem, id } from './../../types/todos'
 
 import thunks from '../../store/todos/thunks';
-
-import { idType, TodosItem } from './../../constants/todos'
 
 export default function Todos() {
   const todos = useAppSelector(state => state.todos.todos);
@@ -13,16 +13,15 @@ export default function Todos() {
     dispatch(thunks.fetchTodos());
   }, [])
 
-  const handleItemDelete = (id: idType) => {
+  const handleItemDelete = (id: id) => {
     dispatch(thunks.fetchTodosItemDelete(id));
   }
 
-  const handleItemCompleted = (event: ChangeEvent, item: TodosItem) => {
-    console.log(event);
+  const handleItemCompleted = (item: TodosItem) => {
     console.log(item);
   }
 
   return todos.length ? <ul>
-    {todos.map((item, index) => <li key={index}>{item.title} <input type="checkbox" onChange={(event) => handleItemCompleted(event, item)} /> <button onClick={() => handleItemDelete(item.id)}>Delete</button></li>)}
+    {todos.map((item: TodosItem, index: number) => <li key={index}>{item.title} <input type="checkbox" defaultChecked={item.completed} onChange={() => handleItemCompleted(item)} /> <button onClick={() => handleItemDelete(item.id)}>Delete</button></li>)}
   </ul> : null;
 }
