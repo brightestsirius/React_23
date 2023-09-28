@@ -45,7 +45,7 @@ describe(`COUNTING`, () => {
         countSecond++;
     })
 
-    test(`counting`, () => {
+    it(`counting`, () => {
         expect(countFirst).toBe(1);
         expect(countSecond).toBe(0);
     })
