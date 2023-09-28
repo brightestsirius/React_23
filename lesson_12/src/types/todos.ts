@@ -1,10 +1,10 @@
-type id = string | number | undefined;
+type id = number | string | undefined;
 
 type TodosItem = {
-    id?: id;
-    title?: string;
-    body?: string;
-    completed?: boolean;
+    userId?: id;
+    id?: id,
+    title?: string,
+    completed?: boolean
 }
 
-export type { id, TodosItem };
+export type { id, TodosItem }

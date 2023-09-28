@@ -1,13 +1,16 @@
 import React from 'react'
+import './App.css'
 
-import Todos from './components/Todos/Todos'
-import Accordion from './components/Accordion/Accordion'
+import { Routes, Route } from 'react-router-dom'
+
+import TodosRoute from './routes/TodosRoute';
+import TodosItemRoute from './routes/TodosItemRoute'
 
 export default function App() {
   return (
-    <div data-testid="app">
-      <Todos />
-      <Accordion title='Testing'><h4>Content</h4></Accordion>
-    </div>
+    <Routes>
+      <Route index path={"/"} element={<TodosRoute />}></Route>
+      <Route path={"/todo"} element={<TodosItemRoute />}></Route>
+    </Routes>
   )
 }

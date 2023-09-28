@@ -22,7 +22,7 @@ describe("Accordion", () => {
 
     test("should show the content on accordion click",async () => {
 
-        const title = screen.getByText(/Show/i);
+        const title = screen.getByText(/Start/i);
         fireEvent.click(title)
 
         expect(await screen.findByText(/Content/i)).toBeInTheDocument();

@@ -1,35 +1,36 @@
-import todos from './../services/todos'
-
-const sum = (a: number, b?: number): number => {
-    if (b) return a + b;
-    return a * 10;
-}
+// const convertItem = (value: number) => String(value);
+import todos from '../services/todos'
 
 type UserData = {
     firstName: string;
-    age: number;
-    isMarried?: boolean;
+    age?: number;
+    country?: string;
 }
 
-const getUser = (user?: UserData) => {
-    if (user) {
-        user.isMarried = true;
+const sum = (a: number, b?: number): number => {
+    if(b) return a + b;
+    return a*100;
+}
+
+const getUserData = (user?:UserData) => {
+    if(user) {
+        user.country = `Ukraine`;
         return user;
     }
-    return { firstName: `Anton`, age: 20 };
+    return {firstName: `John`, age: 23};
 }
 
-const awaitTimeout = () => {
+const awaitSetTimeout = () => {
     return new Promise((resolve) => {
         setTimeout(() => {
-            resolve(`After 1000ms`);
+            resolve(`after 1s`);
         }, 1000)
     })
 }
 
-const fetchData = async () => {
-    const request = await todos.get();
-    return request.slice(0, 2);
+const fetchTodos = async () => {
+    const response = await todos.get();
+    return response.slice(0,2);
 }
 
-export { sum, getUser, awaitTimeout, fetchData };
+export { sum, getUserData, awaitSetTimeout, fetchTodos };

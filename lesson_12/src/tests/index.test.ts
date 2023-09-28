@@ -1,52 +1,49 @@
-import { sum, getUser, awaitTimeout, fetchData } from './index'
-import { todos } from './mocked'
-import { test, expect, beforeEach, afterEach, describe, it } from 'vitest';
+import {sum, getUserData, awaitSetTimeout, fetchTodos} from './index'
+
+import {test, expect, beforeEach, afterEach, describe} from 'vitest'
+
+import { DEFAULT_USER, USER, TODOS } from './mockedData'
 
 test(`fn should return sum of numbers`, () => {
-    const result = sum(2, 3);
+    const result = sum(2,3);
     expect(result).toBe(5);
 })
 
-test(`fn should return 10*a`, () => {
+test(`fn should return a*100`, () => {
     const result = sum(2);
-    expect(result).not.toBe(5);
-    expect(result).toBe(20);
+    expect(result).not.toBe(2);
+    expect(result).toBe(200);
 })
 
-test(`fn to get default user`, () => {
-    const result = getUser();
-    expect(result).toEqual({ firstName: `Anton`, age: 20 });
-})
-
-test(`fn to get user`, () => {
-    const result = getUser({ firstName: `Alina`, age: 20 });
-    expect(result).toEqual({ firstName: `Alina`, age: 20, isMarried: true });
-})
-
-test(`fn should return string after 1s`, async () => {
-    const result = await awaitTimeout();
-    expect(result).toBe(`After 1000ms`);
-})
-
-test(`fn should return array of two objects`, async () => {
-    const result = await fetchData();
-    expect(result).toEqual(todos);
-})
-
-describe(`COUNTING`, () => {
-    let countFirst = 0,
-        countSecond = 0;
+describe(`USERS_FNS`, () => {
+    let counter = 0;
 
     beforeEach(() => {
-        countFirst++;
+        console.log(`before test`, counter);
+        counter++
     })
 
     afterEach(() => {
-        countSecond++;
+        console.log(`after test`, counter);
     })
 
-    it(`counting`, () => {
-        expect(countFirst).toBe(1);
-        expect(countSecond).toBe(0);
+    test(`fn should return default user`, () => {
+        const result = getUserData();
+        expect(result).toEqual(DEFAULT_USER);
     })
+    
+    test(`fn should return user`, () => {
+        const result = getUserData({firstName: `Anton`});
+        expect(result).toEqual(USER);
+    })
+})
+
+test(`after setTimeout`, async () => {
+    const result = await awaitSetTimeout();
+    expect(result).toBe(`after 1s`);
+})
+
+test(`fn should return array of 2 todos`, async ()=>{
+    const result = await fetchTodos();
+    expect(result).toEqual(TODOS);
 })

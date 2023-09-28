@@ -18,7 +18,7 @@ const Accordion = (props: AccordionProps) => {
         <div className="accordion">
             <div className="accordion-title">
                 <h3>{title}</h3>
-                <button onClick={() => onAccordionClick()}>{!show ? 'Show' : 'Hide'}</button>
+                <button onClick={() => onAccordionClick()}>{!show ? 'Start' : 'Hide'}</button>
             </div>
             {show && (
                 <div>

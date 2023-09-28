@@ -1,4 +1,6 @@
-const todos = [
+const DEFAULT_USER = { firstName: `John`, age: 23 };
+const USER = { firstName: `Anton`, country: `Ukraine` };
+const TODOS = [
     { userId: 1, id: 1, title: 'delectus aut autem', completed: false },
     {
         userId: 1,
@@ -8,4 +10,4 @@ const todos = [
     }
 ];
 
-export { todos }
+export { DEFAULT_USER, USER, TODOS };

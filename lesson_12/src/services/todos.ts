@@ -1,7 +1,7 @@
 import axios from 'axios';
 const API = `https://jsonplaceholder.typicode.com/todos`;
 
-import { id, TodosItem } from './../types/todos';
+import { id, TodosItem } from '../types/todos'
 
 const todos = {
     get: (id?: id) => axios(id ? API + `/${id}` : API).then(({ data }) => data),
